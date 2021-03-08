@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="dj4e" content="e6cc48e3a8db9b618592a86a57960164">
+        <title></title>
+    </head>
+    <body>
+        <!-- Validate if there is latest_question_list to show it -->
+        {% if latest_question_list %}
+            <ul>
+            <!-- Iteration of each qyestion passed from views.py -->
+            {% for question in latest_question_list %}
+                <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+    </body>
+</html>

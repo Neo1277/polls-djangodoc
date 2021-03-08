@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="dj4e" content="e6cc48e3a8db9b618592a86a57960164">
+        <title></title>
+    </head>
+    <body>
+        <!-- Show the question  that is passed from views.py -->
+        <h1>{{ question.question_text }}</h1>
+
+        <ul>
+        <!-- Iteration of each choice passed from views.py -->
+        {% for choice in question.choice_set.all %}
+            <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+        </ul>
+
+        <!-- Set url that is declared in urls.py -->
+        <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+
+    </body>
+</html>

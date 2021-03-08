@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="dj4e" content="e6cc48e3a8db9b618592a86a57960164">
+        <title></title>
+    </head>
+    <body>
+        <!-- Show the question  that is passed from views.py -->
+        <h1>{{ question.question_text }}</h1>
+
+        <!-- Validate if there is an error message to show it -->
+        {% if error_message %}
+            <p><strong>{{error_message}}</strong></p>
+        {% endif %}
+
+
+        <form action="{% url 'polls:vote' question.id %}" method="post">
+            {% csrf_token %}
+            <!-- Iteration of each qyestion passed from views.py -->
+            {% for choice in question.choice_set.all %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+            {% endfor %}
+            <input type="submit" value="Vote">
+        </form>
+
+        <!--
+        <ul>
+        {% for choice in question.choice_set.all %}
+            <li>{{ choice.choice_text }}</li>
+        {% endfor %}
+        </ul>
+
+        -->
+
+    </body>
+</html>
